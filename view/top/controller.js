@@ -9,7 +9,6 @@
                 start:start, 
                 count: 10
             }, function(data) {
-                console.log(data);
                 $scope.datalist = data;
                 $scope.$apply();
             }); 

@@ -6,7 +6,7 @@
 		$routeProvider.when('/hot', {
 			templateUrl: "../view/hot/view.html",
 			controller: 'hotcontroller'
-		}).when('/futrue', {
+		}).when('/future', {
 			templateUrl: "../view/future/view.html",
 			controller: "futurecontroller"
 		}).when('/top', {
