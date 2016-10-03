@@ -1,23 +1,35 @@
  <h1 class="page-header">{{datalist.title}}</h1>
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="item in datalist.subjects">
-                    <!-- 徽章 -->
-                    <span class="badge">{{item.rating.average}}</span>
-                    <!-- 单个电影小框架 -->
-                    <ul class="media-list">
-                        <li class="media" >
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" ng-src="{{item.images.medium}}" alt="加载失败">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{item.title}}</h4>
-                                <p>类型:<strong ng-repeat="genres in item.genres"> {{genres}}{{$last?'':'、'}}</strong></p>
-                                <p>导演:<strong ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</strong></p>
-                                <p>主演:<strong ng-repeat="cast in item.casts">{{cast.name}}{{$last?'':'、'}}</strong></p>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+ 
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in datalist.subjects">
+        <!-- 徽章 -->
+        <span class="badge">{{item.rating.average}}</span>
+        <!-- 单个电影小框架 -->
+        <ul class="media-list">
+            <li class="media" >
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" ng-src="{{item.images.medium}}" alt="加载失败">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{item.title}}</h4>
+                    <p>类型:<strong ng-repeat="genres in item.genres"> {{genres}}{{$last?'':'、'}}</strong></p>
+                    <p>导演:<strong ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</strong></p>
+                    <p>主演:<strong ng-repeat="cast in item.casts">{{cast.name}}{{$last?'':'、'}}</strong></p>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+<p>
+    总共{{datalist.total}}条数据，共{{currentPage}}/{{totalPage}}页
+</p>
+<ul class="pager">
+    <li class="previous" ng-class="{disabled:currentPage == 1}" ng-click="goPre(currentPage - 1)">
+        <a>&larr; 前一页</a>
+    </li>
+    <li class="next" ng-class="{disabled:currentPage == total}" ng-click="goNext(currentPage + 1)">
+        <a>后一页 &rarr;</a>
+    </li>
+</ul>
