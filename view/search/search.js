@@ -1,7 +1,7 @@
-;(function(angular){
-    var app = angular.module('app');
-   app.controller('futurecontroller',['$scope','httpService', function($scope, httpService){
-		$scope.datalist ={};
+(function(angular){
+	var app = angular.module("app");
+	app.controller('hotcontroller',['$scope','httpService', function($scope, httpService){
+		$scope.datalist ={} ;
         
         var pageSize = 10;
         var page = 1;
@@ -10,10 +10,10 @@
         $scope.totalPage = 1;
         $scope.currentPage = 1 ;
 
-         $scope.isLoading = true ;
+        $scope.isLoading = true ;
        
-        function getMovie(start) {
-            var url = "http://api.douban.com/v2/movie/coming_soon";
+        function getMovie(start,text) {
+            var url = "http://api.douban.com/v2/movie/search";
             httpService.jsonp(url, {
                 start:start, 
                 count: 10
@@ -24,12 +24,12 @@
                 $scope.$apply();
             }); 
         }
-        getMovie(0);
+        getMovie(0, $routeParams.text);
 
-         $scope.goNext = function(currentPage) {
+        $scope.goNext = function(currentPage) {
             if(currentPage <= $scope.totalPage) {
                 var start = pageSize * (currentPage - 1);
-                 $scope.isLoading = true ;
+                $scope.isLoading = !$scope.isLoading;
                 getMovie(start);
                 $scope.currentPage++;
             }

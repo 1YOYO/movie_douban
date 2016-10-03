@@ -5,9 +5,10 @@
     <title>movie</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="style/loading.css">
   </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="searchController">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -27,8 +28,8 @@
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+          <form class="navbar-form navbar-right" ng-submit="searchMovie(searchText)">
+            <input type="text" class="form-control" placeholder="Search..." ng-model="searchText">
           </form>
         </div>
       </div>
@@ -59,6 +60,7 @@
     <script type="text/javascript" src="app/route.js"></script>
     <script type="text/javascript" src="app/servie.js"></script>
     <script type="text/javascript" src="app/directive.js"></script>
+    <script type="text/javascript" src="view/detail/detail.js"></script>
     
     <script type="text/javascript" src="view/hot/controller.js"></script>
     <script type="text/javascript" src="view/future/controller.js"></script>
