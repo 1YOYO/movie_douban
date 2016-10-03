@@ -1,7 +1,7 @@
 ;(function(angular){
 	'use strict';
 	var app = angular.module('app', ["ngRoute"]);
-	app.controller('searchController' ,['$scope','$location', function($scope, $location){
+	app.controller('searcController' ,['$scope','$location', function($scope, $location){
 		var url = "http://api.douban.com/v2/movie/search";
 
 		$scope.searchMovie = function(search){

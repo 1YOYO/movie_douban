@@ -1,6 +1,6 @@
 (function(angular){
 	var app = angular.module("app");
-	app.controller('hotcontroller',['$scope','httpService', function($scope, httpService){
+	app.controller('searchController',['$scope','httpService', '$routeParams', function($scope, httpService, $routeParams){
 		$scope.datalist ={} ;
         
         var pageSize = 10;
@@ -16,7 +16,8 @@
             var url = "http://api.douban.com/v2/movie/search";
             httpService.jsonp(url, {
                 start:start, 
-                count: 10
+                count: 10,
+                q:text
             }, function(data) {
                 $scope.datalist = data;
                 $scope.totalPage = Math.ceil(data.total/pageSize);
@@ -30,7 +31,7 @@
             if(currentPage <= $scope.totalPage) {
                 var start = pageSize * (currentPage - 1);
                 $scope.isLoading = !$scope.isLoading;
-                getMovie(start);
+                getMovie(start, $routeParams.text);
                 $scope.currentPage++;
             }
         };
@@ -39,7 +40,7 @@
             if(currentPage >= 1) {
                 var start = pageSize * (currentPage - 1);
                 $scope.isLoading = !$scope.isLoading;
-                getMovie(start);
+                getMovie(start, $routeParams.text);
                 $scope.currentPage--;
             }
         };
